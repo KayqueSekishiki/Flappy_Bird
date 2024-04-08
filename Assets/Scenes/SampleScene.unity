@@ -860,7 +860,7 @@ PrefabInstance:
     - target: {fileID: 5565508447340667144, guid: f9440530d5d65014da9cc507b05d3271,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.406
       objectReference: {fileID: 0}
     - target: {fileID: 5565508447340667144, guid: f9440530d5d65014da9cc507b05d3271,
         type: 3}
@@ -911,6 +911,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PFB_Bird
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266654630164773209, guid: f9440530d5d65014da9cc507b05d3271,
+        type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266654630164773209, guid: f9440530d5d65014da9cc507b05d3271,
+        type: 3}
+      propertyPath: jumpInterval
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
