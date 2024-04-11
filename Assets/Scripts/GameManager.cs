@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,5 +43,16 @@ public class GameManager : MonoBehaviour
         _isGameOver = true;
 
         Debug.Log("Game Over... Your scores as " + score);
+
+        StartCoroutine(ReloadScene(2));
+    }
+
+    private IEnumerator ReloadScene(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
+        Debug.Log("Reload scene please!!!");
     }
 }
