@@ -15,6 +15,8 @@ public class ObstacleSpawner : MonoBehaviour
     void Update()
     {
         var gameManager = GameManager.Instance;
+        if (gameManager.IsGameOver()) return;
+
         _coolDown -= Time.deltaTime;
 
         if (_coolDown <= 0f)

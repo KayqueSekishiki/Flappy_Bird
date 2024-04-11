@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -23,7 +24,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _jumpCooldown -= Time.deltaTime;
-        bool canJump = _jumpCooldown <= 0;
+        bool IsGameActive = GameManager.Instance.IsGameActive();
+        bool canJump = _jumpCooldown <= 0 && IsGameActive;
 
         if (canJump)
         {
@@ -32,6 +34,33 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();
             }
+        }
+
+        _thisRigidBody.useGravity = IsGameActive;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OnCustomCollisionEnter(other.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        OnCustomCollisionEnter(other.gameObject);
+    }
+
+    private void OnCustomCollisionEnter(GameObject other)
+    {
+        bool isSensor = other.CompareTag("Sensor");
+        if (isSensor)
+        {
+            GameManager.Instance.score++;
+            Debug.Log(GameManager.Instance.score);
+        }
+        else
+        {
+            GameManager.Instance.EndGame();
+
         }
     }
 

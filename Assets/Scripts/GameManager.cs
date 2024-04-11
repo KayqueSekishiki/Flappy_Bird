@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
+    private bool _isGameOver = false;
     public static GameManager Instance { get; private set; }
+
+    [HideInInspector]
+    public int score = 0;
 
     public List<GameObject> obstaclesPrefabs;
     public float obstacleInterval = 1f;
@@ -22,5 +27,21 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    public bool IsGameActive()
+    {
+        return !_isGameOver;
+    }
+    public bool IsGameOver()
+    {
+        return _isGameOver;
+    }
+
+    public void EndGame()
+    {
+        _isGameOver = true;
+
+        Debug.Log("Game Over... Your scores as " + score);
     }
 }
